@@ -1,0 +1,10 @@
+.Row {
+	height: 100px;
+	width: 300px;
+}
+
+.Row > div{
+	float: left;
+	height: 100px;
+	width: 100px;
+}
