@@ -1,10 +1,13 @@
 .Row {
-	height: 100px;
-	width: 300px;
+	height: 50px;
+	width: 166px;
 }
 
 .Row > div{
 	float: left;
-	height: 100px;
-	width: 100px;
+
+}
+
+.board {
+	text-align: center;
 }

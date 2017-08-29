@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Board.css';
+import Tile from "./Tile.js"
 
 class Board extends Component{
 	constructor(props){
@@ -20,9 +21,9 @@ class Board extends Component{
 		var array3 = []; 
 
 		for (var i = 0; i < 3; i++){
-			array1.push((<div key={i}>{i}</div>))
-			array2.push((<div key={i}>{i}</div>))
-			array3.push((<div key={i}>{i}</div>))
+			array1.push(<Tile/>)
+			array2.push(<Tile/>)
+			array3.push(<Tile/>)
 		}
 	
 
