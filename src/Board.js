@@ -14,6 +14,8 @@ class Board extends Component{
 					
 					]		
 		}
+
+		// rthis.props.turn
 	}
 	render(){
 		var array1 = [];

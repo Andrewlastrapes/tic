@@ -9,11 +9,20 @@ class App extends Component {
       turn : "Player 1"
     }
   }
+
+  function changeTurn1(props){
+    this.setState({turn: "Player 2"});
+  }
+
+  function changeTurn2(props){
+    this.setState({turn: "Player 1"})
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Tic Tac Toe</h1>
-        <Board/>
+        <Board turn={this.state.turn} />
         <h4>Turn: {this.state.turn}</h4>
       </div>
     );
