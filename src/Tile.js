@@ -5,21 +5,28 @@ class Tile extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			tile : 0
+			tile : 0,
+			isActive: true
 
 		}
 	}
 		clickHandler(){
-			if (this.state.turn === "Player 1") {
+		if (this.state.isActive){
+			if (this.props.turn === "Player 1") {
 			this.setState({
-				tile: 1
+				tile: 1,
+				isActive: false
 				
 			});
-		} else if (this.state.turn === "Player 2"){
-			this.setState({
-				tile: 2
-				
-			});
+			} else if (this.props.turn === "Player 2"){
+				this.setState({
+					tile: 2,
+					isActive: false
+					
+				});
+			}
+			this.props.updateAndGameOver(this)
+			this.props.changeTurn();
 		}
 	}
 
@@ -35,13 +42,15 @@ class Tile extends Component{
 		}
 
 		return (
-			<div className= "tile">
+			<div onClick={this.clickHandler.bind(this)} className= "tile">
+			
+				{val}
 				
-			onClick={this.clickHandler.bind({val})}
-				
-			}
+			
 
 			</div>
+				
+			
 		)
 	}
 	
