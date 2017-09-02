@@ -4,48 +4,35 @@ import './Tile.css';
 class Tile extends Component{
 	constructor(props){
 		super(props)
-		this.state = {
-			tile : 0,
-			isActive: true
-
-		}
+			this.state = {
+				isActive: false
+			}
+		
+		
 	}
 		clickHandler(){
-		if (this.state.isActive){
-			if (this.props.turn === "Player 1") {
-			this.setState({
-				tile: 1,
-				isActive: false
-				
-			});
-			} else if (this.props.turn === "Player 2"){
-				this.setState({
-					tile: 2,
-					isActive: false
-					
-				});
-			}
-			this.props.updateAndGameOver(this)
-			this.props.changeTurn();
+		if(!this.state.isActive){
+			this.props.updateAndGameOver(this.props.location)
+			this.setState({isActive: true})
 		}
-	}
+		
+		
+			
+		}
+	
 
 
 
 	render(){
-		var val = "" 
+		
 
-		if (this.state.tile === 1){
-			val = "X"
-		} else if (this.state.tile === 2){
-			val = "O"
-		}
-
+		
+		
 		return (
 			<div onClick={this.clickHandler.bind(this)} className= "tile">
 			
-				{val}
-				
+			
+				{this.props.val}
 			
 
 			</div>

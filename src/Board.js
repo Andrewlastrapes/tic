@@ -12,20 +12,51 @@ class Board extends Component{
 			["","",""],
 			["","",""]
 					
-					]		
+					],
+			turn : "Player 1",
+			game : "In Progress"	
 		}
 
 }
 
+	hasWon(){
+		// Has won either return "In Progress, or "Game Over"
 
-	updateAndGameOver(tile){
-		var location = tile.props.location
-		var value = tile.state.tile
-		var oldBoard = this.state.board
-		// update oldBoard to contain "value" at "location"
+		// 8 win strings 
 
-		// then, check all 8 win conditions
+		for (var i = 0; i < 3; i++){
+			var tile = this.state.board[0][i]
+		} 
+
+
 	}
+
+	updateAndGameOver(location){
+		
+		
+		
+		var newBoard = this.state.board
+		
+		if (this.state.turn == "Player 1"){
+			newBoard[location[0]][location[1]] = "X"
+		} else if (this.state.turn == "Player 2"){
+			newBoard[location[0]][location[1]] = "O"
+		}
+
+		
+		
+		this.setState({
+			board : newBoard,
+			turn : (this.state.turn == "Player 1") ? "Player 2" : "Player 1",
+			game : this.hasWon()
+		})
+
+		
+		
+		
+	}
+		
+	
 
 	render(){
 		var array1 = [];
@@ -33,17 +64,18 @@ class Board extends Component{
 		var array3 = []; 
 
 		for (var i = 0; i < 3; i++){
-			array1.push(<Tile turn={this.props.turn} 
-							  changeTurn={this.props.changeTurn} 
+			array1.push(<Tile key={i}
+							  val={this.state.board[0][i]}
 							  updateAndGameOver={this.updateAndGameOver.bind(this)}
-							  location={[0, i]} />)
+							  location={[0, i]}/>)
 
-			array2.push(<Tile turn={this.props.turn} 
-							  changeTurn={this.props.changeTurn} 
+
+			array2.push(<Tile key={i}
+							  val={this.state.board[1][i]}
 							  updateAndGameOver={this.updateAndGameOver.bind(this)}
 							  location={[1, i]}/>)
-			array3.push(<Tile turn={this.props.turn} 
-							  changeTurn={this.props.changeTurn} 
+			array3.push(<Tile key={i}
+							  val={this.state.board[2][i]}
 							  updateAndGameOver={this.updateAndGameOver.bind(this)}
 							  location={[2, i]}/>)
 		}
@@ -61,6 +93,8 @@ class Board extends Component{
 				<div className="Row">
 					{array3}
 				</div>
+				<h4>Turn: {this.state.turn}</h4>
+
 
 			</div>
 			);
