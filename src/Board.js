@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './Board.css';
 import Tile from "./Tile.js"
 
+
+
+
+
 class Board extends Component{
 	constructor(props){
 		super(props)
@@ -19,15 +23,32 @@ class Board extends Component{
 
 }
 
+	checkArray(array){
+		var x = 0
+		var y = 0;
+  
+		for (var i = 0; i < array.length; i++){
+		  if (array[i].indexOf("X") == 0){ 
+		    x = x + 1
+		  } else {
+		    y = y + 1;
+		   }
+		  }
+		 if (x == 3 || y == 3){
+		  console.log("All three")
+		} else {
+		  console.log("nope")
+		  }
+		}
+
+
+
 	hasWon(){
-		// Has won either return "In Progress, or "Game Over"
+		
 
-		// 8 win strings 
 
-		for (var i = 0; i < 3; i++){
-			var tile = this.state.board[0][i]
-		} 
 
+	
 
 	}
 
