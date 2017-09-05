@@ -25,19 +25,19 @@ class Board extends Component{
 
 	checkArray(array){
 		var x = 0
-		var y = 0;
-  
+		var O = 0;
+  		
 		for (var i = 0; i < array.length; i++){
 		  if (array[i].indexOf("X") == 0){ 
 		    x = x + 1
-		  } else {
-		    y = y + 1;
+		  } else if (array[i].indexOf("O") == 0) {
+		    O = O + 1;
 		   }
 		  }
-		 if (x == 3 || y == 3){
-		  console.log("All three")
+		 if (x == 3 || O == 3){
+		  return true
 		} else {
-		  console.log("nope")
+		  return false
 		  }
 		}
 
@@ -45,6 +45,38 @@ class Board extends Component{
 
 	hasWon(){
 		
+		// All 8 locations as variables. 
+
+
+		var array1 = this.state.board[0]
+		var array2 = this.state.board[1]
+		var array3 = this.state.board[2]
+		var array4 = [this.state.board[0][0], 
+					  this.state.board[1][0],
+					  this.state.board[2][0]]
+		var array5 = [this.state.board[0][1], 
+					  this.state.board[1][1],
+					  this.state.board[2][1]]
+		var array6 = [this.state.board[0][2], 
+					  this.state.board[1][2],
+					  this.state.board[2][2]]
+		var array7 = [this.state.board[0][0], 
+					  this.state.board[1][1],
+					  this.state.board[2][2]]
+		var array8 = [this.state.board[0][2], 
+					  this.state.board[1][1],
+					  this.state.board[2][0]]
+
+		var arrays = [array1, array2, array3, array4, array5, array6, array7, array8]
+
+
+		for (var i = 0; i < arrays.length; i++){
+			if (this.checkArray(arrays[i])){
+				return "Game Over, " + this.state.turn + " Wins!"
+			} 
+			
+		}
+			return "In Progress"
 
 
 
@@ -83,6 +115,7 @@ class Board extends Component{
 		var array1 = [];
 		var array2 = [];
 		var array3 = []; 
+		// var array4 = [];
 
 		for (var i = 0; i < 3; i++){
 			array1.push(<Tile key={i}
@@ -99,6 +132,7 @@ class Board extends Component{
 							  val={this.state.board[2][i]}
 							  updateAndGameOver={this.updateAndGameOver.bind(this)}
 							  location={[2, i]}/>)
+		
 		}
 	 
 
@@ -115,6 +149,7 @@ class Board extends Component{
 					{array3}
 				</div>
 				<h4>Turn: {this.state.turn}</h4>
+				<h4>{(this.state.game === "In Progress") ? "" : this.state.game}</h4>
 
 
 			</div>
